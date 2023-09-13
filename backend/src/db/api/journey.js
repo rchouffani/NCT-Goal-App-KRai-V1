@@ -18,6 +18,8 @@ module.exports = class JourneyDBApi {
         journey: data.journey || null,
         Journey_Date: data.Journey_Date || null,
         Journey_Status: data.Journey_Status || null,
+        Journey_Type: data.Journey_Type || null,
+        End_Date: data.End_Date || null,
         importHash: data.importHash || null,
         createdById: currentUser.id,
         updatedById: currentUser.id,
@@ -43,6 +45,8 @@ module.exports = class JourneyDBApi {
       journey: item.journey || null,
       Journey_Date: item.Journey_Date || null,
       Journey_Status: item.Journey_Status || null,
+      Journey_Type: item.Journey_Type || null,
+      End_Date: item.End_Date || null,
       importHash: item.importHash || null,
       createdById: currentUser.id,
       updatedById: currentUser.id,
@@ -69,6 +73,8 @@ module.exports = class JourneyDBApi {
         journey: data.journey || null,
         Journey_Date: data.Journey_Date || null,
         Journey_Status: data.Journey_Status || null,
+        Journey_Type: data.Journey_Type || null,
+        End_Date: data.End_Date || null,
         updatedById: currentUser.id,
       },
       { transaction },
@@ -154,6 +160,13 @@ module.exports = class JourneyDBApi {
         };
       }
 
+      if (filter.Journey_Type) {
+        where = {
+          ...where,
+          [Op.and]: Utils.ilike('journey', 'Journey_Type', filter.Journey_Type),
+        };
+      }
+
       if (filter.Journey_DateRange) {
         const [start, end] = filter.Journey_DateRange;
 
@@ -172,6 +185,30 @@ module.exports = class JourneyDBApi {
             ...where,
             Journey_Date: {
               ...where.Journey_Date,
+              [Op.lte]: end,
+            },
+          };
+        }
+      }
+
+      if (filter.End_DateRange) {
+        const [start, end] = filter.End_DateRange;
+
+        if (start !== undefined && start !== null && start !== '') {
+          where = {
+            ...where,
+            End_Date: {
+              ...where.End_Date,
+              [Op.gte]: start,
+            },
+          };
+        }
+
+        if (end !== undefined && end !== null && end !== '') {
+          where = {
+            ...where,
+            End_Date: {
+              ...where.End_Date,
               [Op.lte]: end,
             },
           };

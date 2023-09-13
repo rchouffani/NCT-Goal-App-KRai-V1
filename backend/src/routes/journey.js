@@ -18,6 +18,9 @@ const { parse } = require('json2csv');
  *          journey:
  *            type: string
  *            default: journey
+ *          Journey_Type:
+ *            type: string
+ *            default: Journey_Type
 
  *          
  */
@@ -218,7 +221,14 @@ router.get(
     const filetype = req.query.filetype;
     const payload = await JourneyDBApi.findAll(req.query);
     if (filetype && filetype === 'csv') {
-      const fields = ['id', 'journey', 'Journey_Date'];
+      const fields = [
+        'id',
+        'journey',
+        'Journey_Type',
+
+        'Journey_Date',
+        'End_Date',
+      ];
       const opts = { fields };
       try {
         const csv = parse(payload.rows, opts);

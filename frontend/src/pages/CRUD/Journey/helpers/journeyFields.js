@@ -34,6 +34,20 @@ const journeyFields = {
       { value: 'Pending', label: 'Pending' },
     ],
   },
+
+  Journey_Type: {
+    type: 'string',
+    label: 'Journey Type',
+
+    options: [{ value: 'value', label: 'value' }],
+  },
+
+  End_Date: {
+    type: 'datetime',
+    label: 'End Date',
+
+    options: [{ value: 'value', label: 'value' }],
+  },
 };
 
 export default journeyFields;

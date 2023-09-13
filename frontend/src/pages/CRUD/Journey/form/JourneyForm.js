@@ -98,6 +98,18 @@ const JourneyForm = (props) => {
               <Grid item>
                 <RadioFormItem name={'Journey_Status'} schema={journeyFields} />
               </Grid>
+
+              <Grid item>
+                <InputFormItem name={'Journey_Type'} schema={journeyFields} />
+              </Grid>
+
+              <Grid item>
+                <DatePickerFormItem
+                  name={'End_Date'}
+                  schema={journeyFields}
+                  showTimeInput
+                />
+              </Grid>
             </Grid>
             <Grid container spacing={3} mt={2}>
               <Grid item>

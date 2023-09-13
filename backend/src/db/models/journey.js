@@ -28,6 +28,14 @@ module.exports = function (sequelize, DataTypes) {
         values: ['Completed', 'Canceled', 'Pending'],
       },
 
+      Journey_Type: {
+        type: DataTypes.TEXT,
+      },
+
+      End_Date: {
+        type: DataTypes.DATE,
+      },
+
       importHash: {
         type: DataTypes.STRING(255),
         allowNull: true,
