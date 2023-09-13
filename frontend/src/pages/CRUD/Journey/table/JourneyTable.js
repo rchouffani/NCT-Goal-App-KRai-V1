@@ -64,6 +64,7 @@ const JourneyTable = () => {
 
   const [filters, setFilters] = React.useState([
     { label: 'Journey', title: 'journey' },
+    { label: 'Journey Type', title: 'Journey_Type' },
 
     { label: 'Op Co', title: 'OpCo' },
   ]);
@@ -248,6 +249,22 @@ const JourneyTable = () => {
       field: 'Journey_Status',
 
       headerName: 'Journey Status',
+    },
+
+    {
+      field: 'Journey_Type',
+
+      flex: 0.6,
+
+      headerName: 'Journey Type',
+    },
+
+    {
+      field: 'End_Date',
+
+      renderCell: (params) => dataFormat.dateTimeFormatter(params.value),
+
+      headerName: 'End Date',
     },
 
     {
